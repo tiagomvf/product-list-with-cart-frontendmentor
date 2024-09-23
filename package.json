@@ -1,0 +1,18 @@
+{
+  "name": "product-list-with-cart",
+  "version": "0.0.1",
+  "description": "Practice updating the UI in multiple places based on user actions.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "author": "Tiago Maia Vieira de Freitas",
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^5.4.7"
+  },
+  "dependencies": {
+    "lit-html": "^3.2.0"
+  }
+}
