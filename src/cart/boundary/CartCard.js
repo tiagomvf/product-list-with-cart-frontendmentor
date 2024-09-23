@@ -2,26 +2,37 @@ import { html, render } from "lit-html";
 
 function template(items, cartCard) {
     return html`
-        <div id="title">Your Cart (${items.map(({amount}) => amount).reduce((x,y)=>x+y)})</div>
+    <div class="bg-rose-50 rounded-md">
+        <h2 class="text-xl font-bold text-red" id="title">Your Cart (${items.map(({amount}) => amount).reduce((x,y)=>x+y)})</h2>
         ${items.map(({amount, product: {name, price}}) => 
             html`
-            <div>
-            <div>${name}</div>
-            <div>
-               x${amount} @${price}  ${amount*price}  
-            </div>
-            </div>
-            <div>
-                <button>x</button>
+            <ul class="text-sm">
+                <li 
+                style="display: grid; grid-template-columns: 7fr 1fr"
+                >
+                    <span class="font-semibold">${name}</span>
+                    <button type="button" class="row-span-2 self-center size-fit p-px border border-s-rose-300 border-rose-300 rounded-full" value="teste">
+                        <img src="../../assets/images/icon-remove-item.svg">
+                    </button>
+                    <div>
+                    <span class="font-semibold text-red">x${amount}</span> 
+                    <span class="text-rose-500">@ $${price.toFixed(2)}</span>
+                    <span class="font-semibold">$${(amount*price).toFixed(2)}</span>
+                    </div>
+                </li>
+            </ul>
+            <hr class="text-rose-100">
             `
         )}
-        <div>
-            Order total ${
-                items.map(({amount, product: {price}}) => amount*price ).reduce((x,y) => x+y)
+        <div class="text-sm">
+            <span>Order total</span>
+            <span class="text-xl font-bold">$${
+                items.map(({amount, product: {price}}) => amount*price ).reduce((x,y) => x+y).toFixed(2)
                 }
+            </span>
         </div>
-        <div>This is a carbon neutral delivery</div>
-        <button>Confirm order</button>
+        <div class="rounded-md bg-rose-100 text-sm" >This is a <strong>carbon-neutral</strong> delivery</div>
+        <button class="bg-red text-rose-50 rounded-full px-3 py-1" >Confirm order</button>
         `
       
 
