@@ -1,8 +1,8 @@
 import { html, render } from "lit-html";
 
-function template(items, chartCard) {
+function template(items, cartCard) {
     return html`
-        <div id="title">Your Chart (${items.map(({amount}) => amount).reduce((x,y)=>x+y)})</div>
+        <div id="title">Your Cart (${items.map(({amount}) => amount).reduce((x,y)=>x+y)})</div>
         ${items.map(({amount, product: {name, price}}) => 
             html`
             <div>
@@ -27,7 +27,7 @@ function template(items, chartCard) {
 
 }
 
-class ChartCard extends HTMLElement {
+class CartCard extends HTMLElement {
 
     constructor() {
         super();
@@ -54,4 +54,4 @@ class ChartCard extends HTMLElement {
     }
 }
 
-customElements.define('fm-chart-card', ChartCard);
+customElements.define('fm-cart-card', CartCard);

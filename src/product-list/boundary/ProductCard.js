@@ -12,7 +12,7 @@ function template(product) {return  html`
         <li>${product.category}</li>
         <li>${product.price}</li>
     </ul>
-    <button>add to chart</button>
+    <button>add to cart</button>
 </div>
 `;
 }

@@ -11,7 +11,7 @@ import ProductCard from "./ProductCard";
 //                    <li>${item.category}</li>
 //                    <li>${item.price}</li>
 //                </ul>
-//                <button>add to chart</button>
+//                <button>add to cart</button>
 //            </div>`
 //        })}
 //        `
