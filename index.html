@@ -9,35 +9,25 @@
   <title>Frontend Mentor | Product list with cart</title>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
 </head>
 <body class="grid place-content-center bg-rose-100">
-  <div
-  style="
+  <div style="
   display: grid; gap: 1em ;
-  grid-template-columns: 11fr 5fr;
-  grid-template-rows: auto auto;"
-  class="p-12 text-rose-900 bg-rose-100 max-w-7xl">
-  <h1 class="col-span-1 text-3xl font-bold text-rose-900">
-    Desserts
-  </h1>
+  grid-template-columns: 11fr 5fr;" class="p-12 text-rose-900 bg-rose-100 max-w-7xl">
+    <h1 class="col-span-1 text-3xl font-bold text-rose-900">
+      Desserts
+    </h1>
     <div id="cart" class="row-span-2">
       <fm-cart-card></fm-cart-card>
     </div>
-  <!-- <div style="display: grid; grid-template-columns: 3fr 1fr;"> -->
     <div id="products">
-      <fm-product-list 
-        class="grid grid-cols-3 gap-8"
-        >
+      <fm-product-list class="grid grid-cols-3 gap-8">
       </fm-product-list>
     </div>
-  <!-- </div> -->
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>.
-    Coded by <a href="#">Your Name Here</a>.
-  </div></div>
+    <div class="text-xs grid justify-center">
+      <span>Challenge by <a href="https://www.frontendmentor.io?ref=challenge" class="text-red">Frontend Mentor</a>.
+      Coded by <a href="https://github.com/tiagomvf" class="text-red"><strong>Tiago Maia</strong></a>.</span>
+    </div>
+  </div>
 </body>
 </html>
