@@ -11,7 +11,7 @@ function template(product) {return  html`
     <div class="flex justify-center">
     <button class="w-2/3 max-w-2/3 min-w-fit border rounded-full border-rose-300 bg-rose-50 min-h-8 max-h-fit">
         <div class="flex justify-center text-sm font-semibold">
-        <img class="" src="/assets/images/icon-add-to-cart.svg"/>
+        <img class="" src="./images/icon-add-to-cart.svg"/>
         Add to Cart
     </div>
     </button>

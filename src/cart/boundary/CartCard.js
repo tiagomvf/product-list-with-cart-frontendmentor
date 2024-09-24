@@ -12,7 +12,7 @@ function template(items, cartCard) {
                 >
                     <span class="font-semibold">${name}</span>
                     <button type="button" class="row-span-2 self-center place-self-end size-fit p-px border border-s-rose-300 border-rose-300 rounded-full" value="teste">
-                        <img src="../../assets/images/icon-remove-item.svg">
+                        <img src="./images/icon-remove-item.svg">
                     </button>
                     <div>
                     <span class="font-semibold text-red">x${amount}</span> 
@@ -32,7 +32,7 @@ function template(items, cartCard) {
             </span>
         </div>
         <div class="p-3 rounded-md bg-rose-100 text-sm gap-1 justify-center flex flex-row flex-1" >
-           <img src="../../assets/images/icon-carbon-neutral.svg">
+           <img src="/images/icon-carbon-neutral.svg">
            <span class="place-self-center">
             This is a <strong>carbon-neutral</strong> delivery
            </span>
