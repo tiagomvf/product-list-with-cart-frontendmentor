@@ -10,8 +10,12 @@ function template(items, cartCard) {
             html`
                 <li style="display: grid; grid-template-columns: 7fr 1fr" >
                     <span class="font-semibold">${name}</span>
-                    <button type="button" class="row-span-2 self-center place-self-end size-fit p-px border fill-rose-900 border-rose-900 rounded-full" value="teste">
-                       <img src="./images/icon-remove-item.svg" class="fill-rose-900"/>
+                    <button type="button" class="row-span-2 self-center place-self-end size-fit p-px
+                      border fill-rose-300 border-rose-300 rounded-full
+                      hover:fill-rose-900 hover:border-rose-900">
+                       <svg width="10" height="10" viewBox="0 0 10 10">
+                        <path d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z"/>
+                       </svg>
                     </button>
                     <div>
                     <span class="font-semibold text-red">x${amount}</span> 
@@ -52,7 +56,9 @@ class CartCard extends HTMLElement {
 
     render(){
         let purchaseList = store.getState().cart.purchaseList;
-        render(template([...purchaseList]), this);
+        render(template([
+            {name: "Tareco", price: 10, amount: 5},
+            ...purchaseList]), this);
     }
 
     connectedCallback() {
