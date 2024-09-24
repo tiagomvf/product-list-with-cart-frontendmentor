@@ -1,11 +1,12 @@
 import { html, render } from "lit-html";
+import { store } from "../../store";
 
 function template(items, cartCard) {
     return html`
     <div class="bg-rose-50 rounded-lg px-6 py-4">
-        <h2 class="text-xl font-bold text-red" id="title">Your Cart (${items.map(({amount}) => amount).reduce((x,y)=>x+y)})</h2>
+        <h2 class="text-xl font-bold text-red" id="title">Your Cart (${items.map(({amount}) => amount).reduce((x,y) => x+y, 0)})</h2>
         <ul class="text-sm py-2 grid grid-cols-1 gap-3">
-        ${items.map(({amount, product: {name, price}}) => 
+        ${items.map(({amount, name, price}) => 
             html`
                 <li style="display: grid; grid-template-columns: 7fr 1fr" >
                     <span class="font-semibold">${name}</span>
@@ -25,7 +26,7 @@ function template(items, cartCard) {
         <div class="grid grid-cols-2 text-sm py-3">
             <span>Order total</span>
             <span class="text-xl font-bold self-center place-self-end">$${
-                items.map(({amount, product: {price}}) => amount*price ).reduce((x,y) => x+y).toFixed(2)
+                items.map(({amount, price}) => amount*price ).reduce((x,y) => x+y, 0).toFixed(2)
                 }
             </span>
         </div>
@@ -40,41 +41,22 @@ function template(items, cartCard) {
             </div>
     </div>
         `
-      
-
 }
 
 class CartCard extends HTMLElement {
 
     constructor() {
         super();
+        store.subscribe(() => this.render());
+    }
+
+    render(){
+        let purchaseList = store.getState().cart.purchaseList;
+        render(template([...purchaseList]), this);
     }
 
     connectedCallback() {
-        let purchaseList = [
-        {
-            amount: 2,
-            product: {
-                name: "Bolo de Rolo",
-                price: 13.5
-            }
-        },
-        {
-            amount: 4,
-            product: {
-                name: "Churro",
-                price: 3.75
-            }
-        },
-        {
-            amount: 1,
-            product: {
-                name: "Tapioca",
-                price: 10
-            }
-        }
-        ]
-        render(template(purchaseList), this);
+        this.render();
     }
 }
 

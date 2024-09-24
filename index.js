@@ -1,6 +1,6 @@
 import './src/product-list/boundary/ProductList.js'
 import './src/cart/boundary/CartCard.js'
-
+import './src/store.js'
 
 
 //"image": {
