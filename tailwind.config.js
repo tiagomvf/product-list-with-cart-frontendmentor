@@ -8,7 +8,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      sans: ['redhat', ...defaultTheme.fontFamily.sans]
+      sans: ['redhat']
     },
     colors: {
       'rose': {
