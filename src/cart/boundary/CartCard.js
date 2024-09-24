@@ -7,12 +7,10 @@ function template(items, cartCard) {
         <ul class="text-sm py-2 grid grid-cols-1 gap-3">
         ${items.map(({amount, product: {name, price}}) => 
             html`
-                <li
-                style="display: grid; grid-template-columns: 7fr 1fr"
-                >
+                <li style="display: grid; grid-template-columns: 7fr 1fr" >
                     <span class="font-semibold">${name}</span>
-                    <button type="button" class="row-span-2 self-center place-self-end size-fit p-px border border-s-rose-300 border-rose-300 rounded-full" value="teste">
-                        <img src="./images/icon-remove-item.svg">
+                    <button type="button" class="row-span-2 self-center place-self-end size-fit p-px border fill-rose-900 border-rose-900 rounded-full" value="teste">
+                       <img src="./images/icon-remove-item.svg" class="fill-rose-900"/>
                     </button>
                     <div>
                     <span class="font-semibold text-red">x${amount}</span> 
@@ -38,7 +36,7 @@ function template(items, cartCard) {
            </span>
         </div>
         <div class="py-3">
-        <button class="bg-red w-full font-semibold text-rose-50 rounded-full px-3 py-2">Confirm order</button>
+        <button class="bg-red w-full font-semibold text-rose-50 rounded-full px-3 py-2 capitalize">confirm order</button>
             </div>
     </div>
         `
