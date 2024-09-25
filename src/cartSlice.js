@@ -19,9 +19,21 @@ export const cartSlice = createSlice({
         },
         deleteEntry(state, {payload: {name}}){
             state.purchaseList = state.purchaseList.filter(x => x.name != name);
+        },
+        increment(state, {payload: {name}}){
+            let found = state.purchaseList.find(x => x.name == name);
+            found.amount++;
+        },
+        decrement(state, {payload: {name}}){
+            let found = state.purchaseList.find(x => x.name == name);
+            if(found.amount == 1) {
+                state.purchaseList = state.purchaseList.filter(x => x.name != name);
+            }else{
+                found.amount--;
+            }
         }
     }
 })
 
-export const { add, deleteEntry } = cartSlice.actions;
+export const { add, deleteEntry, increment, decrement } = cartSlice.actions;
 export default cartSlice.reducer;

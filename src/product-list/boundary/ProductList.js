@@ -1,21 +1,6 @@
 import { html, render } from "lit-html";
 import ProductCard from "./ProductCard";
 
-//const template = (/** @type{import("../../..").Product[]} */ products) => 
-//    html`
-//        ${products.map((item) => {
-//            return html`
-//            <div>
-//                <ul>
-//                    <li>${item.name}</li>
-//                    <li>${item.category}</li>
-//                    <li>${item.price}</li>
-//                </ul>
-//                <button>add to cart</button>
-//            </div>`
-//        })}
-//        `
-
 class ProductList extends HTMLElement {
 
     /**
