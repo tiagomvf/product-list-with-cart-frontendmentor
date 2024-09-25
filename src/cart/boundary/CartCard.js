@@ -1,5 +1,6 @@
 import { html, render } from "lit-html";
 import { store } from "../../store";
+import { deleteEntry } from "../../cartSlice";
 
 function template(items, cartCard) {
     return html`
@@ -10,7 +11,9 @@ function template(items, cartCard) {
             html`
                 <li style="display: grid; grid-template-columns: 7fr 1fr" >
                     <span class="font-semibold">${name}</span>
-                    <button type="button" class="row-span-2 self-center place-self-end size-fit p-px
+                    <button
+                      @click=${ () => {store.dispatch(deleteEntry({name: name}))}}
+                      id="delete" type="button" class="row-span-2 self-center place-self-end size-fit p-px
                       border fill-rose-300 border-rose-300 rounded-full
                       hover:fill-rose-900 hover:border-rose-900">
                        <svg width="10" height="10" viewBox="0 0 10 10">
@@ -56,9 +59,7 @@ class CartCard extends HTMLElement {
 
     render(){
         let purchaseList = store.getState().cart.purchaseList;
-        render(template([
-            {name: "Tareco", price: 10, amount: 5},
-            ...purchaseList]), this);
+        render(template([...purchaseList]), this);
     }
 
     connectedCallback() {

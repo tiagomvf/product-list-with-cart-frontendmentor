@@ -16,9 +16,12 @@ export const cartSlice = createSlice({
                 state.purchaseList =
                   [ ...state.purchaseList, { amount: 1, name, price } ]
             }
+        },
+        deleteEntry(state, {payload: {name}}){
+            state.purchaseList = state.purchaseList.filter(x => x.name != name);
         }
     }
 })
 
-export const { add } = cartSlice.actions;
+export const { add, deleteEntry } = cartSlice.actions;
 export default cartSlice.reducer;
