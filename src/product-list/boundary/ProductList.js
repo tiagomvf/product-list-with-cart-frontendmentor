@@ -1,5 +1,5 @@
-import { html, render } from "lit-html";
 import ProductCard from "./ProductCard";
+import {store} from "../../store"
 
 class ProductList extends HTMLElement {
 
@@ -15,7 +15,7 @@ class ProductList extends HTMLElement {
         /**
          * @type {Product[]}
          */
-        let products = await response.json();
+        let products = store.getState().catalog;
         products.forEach(item => {
             const pc = new ProductCard();
             pc.product = item;
