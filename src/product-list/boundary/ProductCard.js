@@ -41,10 +41,7 @@ class ProductCard extends HTMLElement {
     }    
 
     connectedCallback(){
-        this.render(template({
-          ...this.product,
-          amount: (store.getState().cart.purchaseList.find(x => x.name == product.name)?.amount || 0)
-        }), this);
+        this.render();
     }
 }
 
