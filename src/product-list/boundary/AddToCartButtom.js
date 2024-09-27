@@ -1,6 +1,6 @@
 
 import { html, render } from "lit-html";
-import { add } from "../../cartSlice";
+import { increment } from "../../cartSlice";
 import { store } from "../../store";
 
 const btTemplace = () => html`
@@ -28,7 +28,7 @@ class AddToCartButtom extends HTMLElement {
   connectedCallback(){
     this.render();
     const {name, price} = this.dataset;
-    this.querySelector('#add-to-cart').addEventListener('click', () => store.dispatch(add({name, price: Number(price)})))
+    this.querySelector('#add-to-cart').addEventListener('click', () => store.dispatch(increment({name, price: Number(price)})))
   }
 
 }

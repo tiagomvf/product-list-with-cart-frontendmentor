@@ -1,5 +1,4 @@
 import { html, render } from "lit-html";
-import { add } from "../../cartSlice";
 import { store } from "../../store";
 import "./IncDecButton";
 import "./AddToCartButtom";

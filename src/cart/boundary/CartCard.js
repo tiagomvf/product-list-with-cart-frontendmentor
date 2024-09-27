@@ -69,7 +69,12 @@ class CartCard extends HTMLElement {
 
     render(){
         let purchaseList = store.getState().cart.purchaseList;
-        render(template([...purchaseList]), this);
+        let items = [...purchaseList].map( ({name, amount}) => ({
+            name, amount,
+            price: [...store.getState().catalog].find(x => x.name == name).price
+          }  
+        ));
+        render(template(items), this);
     }
 
     connectedCallback() {
