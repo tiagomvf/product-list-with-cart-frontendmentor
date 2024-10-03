@@ -1,6 +1,7 @@
 import { html, render } from "lit-html";
 import { store } from "../../store";
 import { deleteEntry } from "../../cartSlice";
+import './ConfirmationDialog.js'
 
 function template(items, cartCard) {
     return html`
@@ -57,6 +58,9 @@ function template(items, cartCard) {
         </div>
         `}
     </div>
+</div>
+<fm-confirmation-dialog></fm-confirmation-dialog>
+        
         `
 }
 
@@ -65,6 +69,8 @@ class CartCard extends HTMLElement {
     constructor() {
         super();
         store.subscribe(() => this.render());
+        // let conf = document.createElement('fm-confirmation-dialog');
+        // this.appendChild(conf);
     }
 
     render(){
@@ -79,6 +85,9 @@ class CartCard extends HTMLElement {
 
     connectedCallback() {
         this.render();
+        const conf = this.querySelector("fm-confirmation-dialog");
+
+        conf.showModal();
     }
 }
 
