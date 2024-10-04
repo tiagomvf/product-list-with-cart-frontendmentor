@@ -54,7 +54,7 @@ function template(items, cartCard) {
            </span>
         </div>
         <div class="py-3">
-        <button class="bg-red w-full font-semibold text-rose-50 rounded-full px-3 py-2 capitalize">confirm order</button>
+        <button id="confirm-order" class="bg-red w-full font-semibold text-rose-50 rounded-full px-3 py-2 capitalize">confirm order</button>
         </div>
         `}
     </div>
@@ -69,8 +69,6 @@ class CartCard extends HTMLElement {
     constructor() {
         super();
         store.subscribe(() => this.render());
-        // let conf = document.createElement('fm-confirmation-dialog');
-        // this.appendChild(conf);
     }
 
     render(){
@@ -81,13 +79,21 @@ class CartCard extends HTMLElement {
           }  
         ));
         render(template(items), this);
+        const confirmButton = this.querySelector("#confirm-order");
+        /*
+          FIXME: Confirmation dialog should listen to store state.
+            - Add shopping statuses to the store: SHOPPING, CONFIRMATION
+            - Make modal appear when status is CONFIRMATION
+          Putting the shopping status on the store will help to replay/test the app. 
+         */
+        confirmButton?.addEventListener('click', () => {
+            console.log("clicou")
+            this.querySelector("fm-confirmation-dialog").showModal();
+        });
     }
 
     connectedCallback() {
         this.render();
-        const conf = this.querySelector("fm-confirmation-dialog");
-
-        conf.showModal();
     }
 }
 
