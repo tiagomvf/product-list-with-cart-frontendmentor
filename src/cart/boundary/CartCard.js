@@ -2,8 +2,9 @@ import { html, render } from "lit-html";
 import { store } from "../../store";
 import { deleteEntry } from "../../cartSlice";
 import './ConfirmationDialog.js'
+import { confirm } from "../../shoppingPhaseSlice.js";
 
-function template(items, cartCard) {
+function template(items) {
     return html`
     <div class="bg-rose-50 rounded-lg px-6 py-4">
         <h2 class="text-xl font-bold text-red" id="title">Your Cart (${items.map(({amount}) => amount).reduce((x,y) => x+y, 0)})</h2>
@@ -81,14 +82,10 @@ class CartCard extends HTMLElement {
         render(template(items), this);
         const confirmButton = this.querySelector("#confirm-order");
         /*
-          FIXME: Confirmation dialog should listen to store state.
-            - Add shopping statuses to the store: SHOPPING, CONFIRMATION
-            - Make modal appear when status is CONFIRMATION
-          Putting the shopping status on the store will help to replay/test the app. 
+          FIXME: Add Listener only once.
          */
         confirmButton?.addEventListener('click', () => {
-            console.log("clicou")
-            this.querySelector("fm-confirmation-dialog").showModal();
+            store.dispatch(confirm())
         });
     }
 

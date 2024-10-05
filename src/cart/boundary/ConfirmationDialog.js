@@ -1,3 +1,4 @@
+import { store } from "../../store";
 
 const template = `
   <style> @import "../../../main.css"; </style>
@@ -15,12 +16,13 @@ class ConfirmationDialog extends HTMLElement {
         super();
         this.root = this.attachShadow({mode: "closed"})
         this.root.innerHTML = template;
+        store.subscribe(() => {
+          const phase = store.getState().shoppingPhase.phase;
+          const dialog = this.root.querySelector("dialog")
+          phase == "confirmation" && dialog.showModal();
+        });
     }
 
-    showModal(){
-      const dialog = this.root.querySelector("dialog")
-      dialog.showModal();
-    }
 
 }
 
