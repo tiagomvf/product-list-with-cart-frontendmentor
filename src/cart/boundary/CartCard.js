@@ -55,7 +55,7 @@ function template(items) {
            </span>
         </div>
         <div class="py-3">
-        <button id="confirm-order" class="bg-red w-full font-semibold text-rose-50 rounded-full px-3 py-2 capitalize">confirm order</button>
+        <button @click=${() => store.dispatch(confirm())} id="confirm-order" class="bg-red w-full font-semibold text-rose-50 rounded-full px-3 py-2 capitalize">confirm order</button>
         </div>
         `}
     </div>
@@ -80,13 +80,6 @@ class CartCard extends HTMLElement {
           }  
         ));
         render(template(items), this);
-        const confirmButton = this.querySelector("#confirm-order");
-        /*
-          FIXME: Add Listener only once.
-         */
-        confirmButton?.addEventListener('click', () => {
-            store.dispatch(confirm())
-        });
     }
 
     connectedCallback() {

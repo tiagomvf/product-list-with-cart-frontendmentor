@@ -27,9 +27,12 @@ export const cartSlice = createSlice({
             } else {
                 found.amount--;
             }
+        },
+        clearCart(state) {
+            state.purchaseList = []
         }
     }
 })
 
-export const { deleteEntry, increment, decrement } = cartSlice.actions;
+export const { deleteEntry, increment, decrement, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;

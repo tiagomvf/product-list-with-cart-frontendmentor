@@ -1,4 +1,7 @@
+import { createAction, createAsyncThunk } from "@reduxjs/toolkit";
+import { continueShopping } from "../../shoppingPhaseSlice";
 import { store } from "../../store";
+import { clearCart } from "../../cartSlice";
 
 const template = `
   <style> @import "../../../main.css"; </style>
@@ -19,7 +22,18 @@ class ConfirmationDialog extends HTMLElement {
         store.subscribe(() => {
           const phase = store.getState().shoppingPhase.phase;
           const dialog = this.root.querySelector("dialog")
-          phase == "confirmation" && dialog.showModal();
+          
+          if(phase === "confirmation") {
+            dialog.showModal();
+          } else {
+            dialog.close()
+          }
+
+          const btn = this.root.querySelector("form button");
+          btn.addEventListener("click", () => {
+            store.dispatch(continueShopping())
+            store.dispatch(clearCart())
+          })
         });
     }
 
