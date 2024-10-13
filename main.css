@@ -6,7 +6,7 @@
 
     @font-face {
         font-family: redhat;
-        src: url(.//fonts/RedHatText-VariableFont_wght.ttf) format('woff2');
+        src: url(/fonts/RedHatText-VariableFont_wght.ttf) format('woff2');
     }
 
 }

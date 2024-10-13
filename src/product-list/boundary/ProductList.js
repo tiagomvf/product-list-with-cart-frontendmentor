@@ -8,13 +8,22 @@ class ProductList extends HTMLElement {
      */
     constructor(){
         super();
+        store.subscribe(() => this.render()).bind(this);
     }
 
-    async connectedCallback(){
-        let response = await fetch('./data.json');
+    connectedCallback(){
         /**
          * @type {Product[]}
          */
+        let products = store.getState().catalog;
+        products.forEach(item => {
+            const pc = new ProductCard();
+            pc.product = item;
+            this.appendChild(pc)
+        })
+    }
+
+    render(){
         let products = store.getState().catalog;
         products.forEach(item => {
             const pc = new ProductCard();
