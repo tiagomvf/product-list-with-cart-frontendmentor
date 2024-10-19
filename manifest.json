@@ -1,0 +1,13 @@
+{
+  "name": "Deserts (Challenge by Frontend Mentor. Coded by Tiago Maia)",
+  "start_url": "http://localhost:5173/",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "images/illustration-empty-cart.svg",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
+
