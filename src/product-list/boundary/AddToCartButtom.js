@@ -18,17 +18,18 @@ class AddToCartButtom extends HTMLElement {
 
   constructor(){
     super();
+    this.attachShadow({mode: "open"});
     store.subscribe(() => this.render());
   }
 
   render(){
-    render(btTemplace(), this);
+    render(btTemplace(), this.shadowRoot);
   }
 
   connectedCallback(){
     this.render();
     const {name, price} = this.dataset;
-    this.querySelector('#add-to-cart').addEventListener('click', () => store.dispatch(increment({name, price: Number(price)})))
+    this.shadowRoot.querySelector('#add-to-cart').addEventListener('click', () => store.dispatch(increment({name, price: Number(price)})))
   }
 
 }

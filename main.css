@@ -1,12 +1,76 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import './normalize.css';
 
-@layer base {
+@font-face {
+    font-family: redhat;
+    src: url(/fonts/RedHatText-VariableFont_wght.ttf) format('woff2');
+}
 
-    @font-face {
-        font-family: redhat;
-        src: url(/fonts/RedHatText-VariableFont_wght.ttf) format('woff2');
-    }
+html {
+  font-size: 16px;
+}
 
+:root {
+  --clr-red:      hsl(14, 86%, 42%);
+  --clr-green:    hsl(159, 69%, 38%);
+  --clr-rose-050:  hsl(20, 50%, 98%);
+  --clr-rose-100: hsl(13, 31%, 94%);
+  --clr-rose-300: hsl(14, 25%, 72%);
+  --clr-rose-400: hsl(7, 20%, 60%);
+  --clr-rose-500: hsl(12, 20%, 44%);
+  --clr-rose-900: hsl(14, 65%, 9%);
+
+  --fs-100: 0.75rem;
+  --fs-200: 0.875rem;
+  --fs-300: 1rem;
+  --fs-400: 1.125rem;
+  --fs-500: 1.25rem;
+  --fs-700: 1.5rem;
+  --fs-800: 2rem;
+
+}
+
+body {
+  justify-content: center;
+  font-family: redhat, sans-serif;
+  background-color: var(--clr-rose-050);
+  color: var(--clr-rose-900);
+  font-size: var(--fs-300);
+  font-weight: 400; 
+}
+
+body > div {
+  padding-top: 4em;
+  max-width: 1440px;
+  margin: auto;
+  display: grid;
+  gap: 2em;
+  grid-template: auto auto auto / 7fr 3fr;
+  grid-template-areas: 
+    "header cart"
+    "products cart"
+    "footer footer";
+}
+
+body > div > h1 {
+  grid-area: header;
+}
+
+body > div > fm-product-list  {
+  grid-area: products;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+} 
+
+body > div > fm-cart-card {
+  grid-area: cart;
+
+}
+
+footer {
+  grid-area: footer;
+  display: flex;
+  justify-content: center;
 }
