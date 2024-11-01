@@ -1,6 +1,5 @@
 import { html, render } from "lit-html";
 import { store } from "../../store";
-import "./IncDecButton";
 import "./AddToCartButtom";
 
 /**
@@ -40,13 +39,18 @@ div .buttom {
   place-self: center;
   translate: 0 -1em;
 }
+
+add-to-cart-button {
+  width: 50%;
+  align-self: center;
+  position: relative;
+  top: -1.8em;
+}
 </style>
-<img src=${product.image.desktop}/>
-<div class="buttom">
-${ product.amount == 0 ?
-  html`<add-to-cart-button data-name=${product.name} data-price=${product.price}></add-to-cart-button>`: 
-  html`<inc-dec-button  data-name=${product.name}></inc-dec-button>`}
+<div>
+  <img src=${product.image.desktop}>
 </div>
+<add-to-cart-button data-name=${product.name} data-amount=${product.amount}></add-to-cart-button> 
 <div class="category">${product.category}</div>
 <div class="name">${product.name}</div>
 <div class="price">$ ${product.price.toFixed(2)}</div>
