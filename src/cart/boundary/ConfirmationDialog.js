@@ -5,9 +5,8 @@ import { clearCart } from "../../cartSlice";
 import { html, render } from "lit-html";
 
 const template = (list) => html`
-  <style> @import "../../../main.css"; </style>
-  <dialog class="rounded-lg">
-  <p class=" text-red bordertext-xl">Greetings, one and all!</p>
+  <dialog class="">
+  <p class="">Greetings, one and all!</p>
   ${list.map(({name, amount, price}) => html`<li>${amount} ${name}</li>`)}
   <form method="dialog">
     <button>OK</button>

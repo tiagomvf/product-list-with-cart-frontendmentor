@@ -1,6 +1,5 @@
 import { html, render } from "lit-html";
 import { store } from "../../store";
-import "./IncDecButton";
 import "./AddToCartButtom";
 
 /**
@@ -8,20 +7,53 @@ import "./AddToCartButtom";
  * @returns 
  */
 function template(product) {return  html`
+<style>
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+}
+img {
+  object-fit: cover;
+  width: 100%;
+  border-radius: 5%;
+}
 
-<div class="grid columns-1">
-    <img class="row-span-2 rounded-md" src=${product.image.desktop}/>
-    <div class="flex items-center justify-center h-8 relative bottom-4">
-    ${ product.amount == 0 ?
-      html`<add-to-cart-button class="h-full w-4/5" data-name=${product.name} data-price=${product.price}></add-to-cart-button>`: 
-      html`<inc-dec-button class="h-full w-4/5" data-name=${product.name}></inc-dec-button>`}
-    </div>
-    <div class="grid grid-cols-1">
-    <span class="text-rose-400 text-sm font-semibold">${product.category}</span>
-    <span class="font-semibold" >${product.name}</span>
-    <span class="text-red font-semibold">$ ${product.price.toFixed(2)}</span>
-    <div>
+.category {
+  font-size: var(--fs-200);
+  color: var(--clr-rose-300);
+  font-weight: 600;
+}
+.name{
+  font-size: var(--fs-300);
+  color: var(--clr-rose-900);
+  font-weight: 600;
+}
+.price{
+  font-size: var(--fs-300);
+  color: var(--clr-red);
+  font-weight: 600;
+}
+
+div .buttom {
+  place-self: center;
+  translate: 0 -1em;
+}
+
+add-to-cart-button {
+  width: 65%;
+  align-self: center;
+  position: relative;
+  top: -2.2em;
+}
+</style>
+<div>
+  <img src=${product.image.desktop}>
 </div>
+<add-to-cart-button data-name=${product.name} data-amount=${product.amount}></add-to-cart-button> 
+<div class="category">${product.category}</div>
+<div class="name">${product.name}</div>
+<div class="price">$ ${product.price.toFixed(2)}</div>
 `;
 }
 
@@ -29,6 +61,7 @@ class ProductCard extends HTMLElement {
 
     constructor(){
         super();
+        this.attachShadow({mode: "open"});
         store.subscribe(() => this.render())
     }
 
@@ -36,7 +69,7 @@ class ProductCard extends HTMLElement {
       render(template({
         ...this.product,
         amount: (store.getState().cart.purchaseList.find(x => x.name == this.product.name)?.amount || 0)
-      }), this);
+      }), this.shadowRoot);
     }    
 
     connectedCallback(){

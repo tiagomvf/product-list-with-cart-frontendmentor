@@ -3,32 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="stylesheet" href="./normalize.css">
   <link rel="stylesheet" href="./main.css">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="manifest" href="manifest.json" />
   <script type="module" src="./index.js"></script>
   <title>Frontend Mentor | Product list with cart</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
 </head>
-<body class="grid place-content-center bg-rose-100">
-  <div style="
-  display: grid; gap: 1em ;
-  grid-template-columns: 11fr 5fr;" class="p-12 text-rose-900 bg-rose-100 max-w-7xl">
-    <h1 class="col-span-1 text-3xl font-bold text-rose-900">
+<body>
+  <div>
+    <h1>
       Desserts
     </h1>
-    <div id="cart" class="row-span-2">
-      <fm-cart-card class="sticky top-2"></fm-cart-card>
-    </div>
-    <div id="products">
-      <fm-product-list class="grid grid-cols-3 gap-8">
-      </fm-product-list>
-    </div>
-    <div class="col-span-2 text-xs grid justify-center">
-      <span>Challenge by <a href="https://www.frontendmentor.io?ref=challenge" class="text-red">Frontend Mentor</a>.
-      Coded by <a href="https://github.com/tiagomvf" class="text-red"><strong>Tiago Maia</strong></a>.</span>
-    </div>
+    <fm-product-list id="products"></fm-product-list>
+    <fm-cart-card></fm-cart-card>
+    <footer>
+      <span>Challenge by <a href="https://www.frontendmentor.io?ref=challenge"></a>Frontend Mentor</a>.
+      Coded by <a href="https://github.com/tiagomvf"><strong>Tiago Maia</strong></a>.</span>
+      </footer>
   </div>
 </body>
 </html>

@@ -6,69 +6,171 @@ import { confirm } from "../../shoppingPhaseSlice.js";
 
 function template(items) {
     return html`
-    <div class="bg-rose-50 rounded-lg px-6 py-4">
-        <h2 class="text-xl font-bold text-red" id="title">Your Cart (${items.map(({amount}) => amount).reduce((x,y) => x+y, 0)})</h2>
+    <style>
+        :host {
+            background-color: white;
+            align-self: start;
+            border-radius: .5em;
+            padding: 1em;
+        }
+        h2 {
+            color: var(--clr-red);
+        }
 
+        :host > div {
+          display: flex;
+          flex-direction: column;
+          gap: 1em ;
+        }
+        ul[role='list'] {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: .25em;
+        }
+
+        .button-remove {
+            padding: 0;
+            grid-row-start: 1;
+            grid-row-end: 3;
+            grid-column-start: 2;
+            align-self: center;
+            border: none;
+            background-color: transparent;
+        }
+
+        svg {
+            padding: .1em;
+            border: solid 2px;
+            border-radius: 50%;
+        }
+        .name {
+            font-size: var(--fs-200);
+            line-height: 2;
+            font-weight: 600;
+        }
+
+        .unit-price, .total-price {
+            padding-left: .5em;
+        }
+
+        .amount {
+            font-weight: 700;
+            color: var(--clr-red);
+        }
+
+        .unit-price {
+            color: var(--clr-rose-300);
+        }
+
+        .total-price {
+            font-weight: 700;
+            color: var(--clr-rose-500);
+        }
+
+        .total-order-line {
+            display: flex;
+            justify-content: space-between;
+            align-content: baseline;
+            align-items: center;
+        }
+
+        .total-order-price {
+            font-weight: 700;
+            font-size: var(--fs-700);
+        }
+
+        .carbon-neutral-msg {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            padding: 1.25em;
+            background-color: var(--clr-rose-050);
+            border-radius: 0.5em;
+        }
+
+        :host > div > button {
+            border-radius: 9999px;
+            color: var(--clr-rose-050);
+            font-weight: 600;
+            border: none;
+            background-color: var(--clr-red);
+            padding: 1em;
+        }
+
+        hr {
+            color: var(--clr-rose-100);
+            border: solid 1px;
+        }
+
+        .empty-cart {
+            align-items: center;
+            font-weight: 600;
+            color: var(--clr-rose-400)
+        }
+    </style>
+        <h2>Your Cart (${items.map(({amount}) => amount).reduce((x,y) => x+y, 0)})</h2>
         ${ items?.length == 0 ?
         html`
-        <div class="grid justify-items-center">
-        <img src="./images/illustration-empty-cart.svg">
-        <span class="text-xs font-semibold text-rose-400 items-center place-items-center">Your added items will appear here</span>
+        <div class="empty-cart">
+          <img src="./images/illustration-empty-cart.svg">
+          <span>Your added items will appear here</span>
         </div>
         ` :
         html`
-        <ul class="text-sm py-2 grid grid-cols-1 gap-3">
+        <div>
+        <ul role="list">
         ${items.map(({amount, name, price}) => 
             html`
-                <li style="display: grid; grid-template-columns: 7fr 1fr" >
-                    <span class="font-semibold">${name}</span>
-                    <button
+                <li>
+                    <span class='name'>${name}</span>
+                    <div>
+                        <span class="amount">${amount}x</span> 
+                        <span class="unit-price">@ $${price.toFixed(2)}</span>
+                        <span class="total-price">$${(amount*price).toFixed(2)}</span>
+                    </div>
+                    <button class='button-remove'
                       @click=${ () => {store.dispatch(deleteEntry({name: name}))}}
-                      id="delete" type="button" class="row-span-2 self-center place-self-end size-fit p-px
-                      border fill-rose-300 border-rose-300 rounded-full
-                      hover:fill-rose-900 hover:border-rose-900">
+                      id="delete" type="button" >
                        <svg width="10" height="10" viewBox="0 0 10 10">
                         <path d="M8.375 9.375 5 6 1.625 9.375l-1-1L4 5 .625 1.625l1-1L5 4 8.375.625l1 1L6 5l3.375 3.375-1 1Z"/>
                        </svg>
                     </button>
-                    <div>
-                    <span class="font-semibold text-red">x${amount}</span> 
-                    <span class="text-rose-500">@ $${price.toFixed(2)}</span>
-                    <span class="font-semibold">$${(amount*price).toFixed(2)}</span>
-                    </div>
                 </li>
-            <hr class="text-rose-300">
+            <hr>
             `
         )}
         </ul>
-        <div class="grid grid-cols-2 text-sm py-3">
-            <span>Order total</span>
-            <span class="text-xl font-bold self-center place-self-end">$${
+        <div class='total-order-line'>
+            Order total
+            <span class="total-order-price">$${
                 items.map(({amount, price}) => amount*price ).reduce((x,y) => x+y, 0).toFixed(2)
                 }
             </span>
         </div>
-        <div class="p-3 rounded-md bg-rose-100 text-sm gap-1 justify-center flex flex-row flex-1" >
+        <div class="carbon-neutral-msg">
            <img src="/images/icon-carbon-neutral.svg">
-           <span class="place-self-center">
+           <span>
             This is a <strong>carbon-neutral</strong> delivery
            </span>
         </div>
-        <div class="py-3">
-        <button @click=${() => store.dispatch(confirm())} id="confirm-order" class="bg-red w-full font-semibold text-rose-50 rounded-full px-3 py-2 capitalize">confirm order</button>
+        <button @click=${() => store.dispatch(confirm())} id="confirm-order">Confirm Order</button>
         </div>
         `}
     </div>
-</div>
 <fm-confirmation-dialog></fm-confirmation-dialog>
-        
-        `
+`
 }
 
 class CartCard extends HTMLElement {
 
     constructor() {
         super();
+        this.attachShadow({mode:"open"});
         store.subscribe(() => this.render());
     }
 
@@ -79,7 +181,7 @@ class CartCard extends HTMLElement {
             price: [...store.getState().catalog].find(x => x.name == name).price
           }  
         ));
-        render(template(items), this);
+        render(template(items), this.shadowRoot);
     }
 
     connectedCallback() {
