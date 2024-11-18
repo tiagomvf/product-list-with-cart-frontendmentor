@@ -1,4 +1,3 @@
-
 import { html, render } from "lit-html";
 import { decrement, increment } from "../../cartSlice";
 import { store } from "../../store";
@@ -14,17 +13,14 @@ const btTemplace = (amount) => html`
     flex-basis: 100%;
   }
 
-  button:focus, button:hover {
-    filter: invert(50%)
-  }
-
   :host {
     display: flex;
     align-content: center;
     padding: 0;
     margin: 0;
-    height: 2.50em;
+    height: 3em;
     font-weight: 500;
+    font-size: var(--fs-200);
   }
 
   :host > .hidden  {
@@ -33,37 +29,68 @@ const btTemplace = (amount) => html`
 
   .add-first {
     display: flex;
+    gap: .40em;
     align-items: center;
     justify-content: center;
     border-radius: 9999px;
     border: solid 1px var(--clr-rose-500);
+    background: white;
+  }
+
+  .add-first:hover,
+  .add-first:focus {
+    color: var(--clr-red);
+    border-color: var(--clr-red);
   }
 
   :host > div {
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
+    justify-items: center;
+    padding: 0 1em;
     background-color: var(--clr-red);
     color: var(--clr-rose-050);
     border: none;
     border-radius: 100vw;
   }
-  :host > div > button:first-child {
-    padding-left: 0.85em;
+
+
+  :host div button {
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    border: solid 1px;
+    justify-self: start;
+    border-radius: 50%;
+    width: var(--fs-300);
+    height: var(--fs-300);
+    line-height: var(--fs-300);
   }
 
-  :host > div > button:last-child {
-    text-align: right;
-    padding-right: 0.85em;
+  :host div button:hover,
+  :host div button:focus {
+    background: var(--clr-rose-050);
+    color: var(--clr-red);
+    border-color: var(--clr-rose-300);
   }
+
+  :host div button:hover img,
+  :host div button:focus img {
+    filter: brightness(70%)
+ } 
 
   </style>
     <div id='has-items'>
-      <button class='decrement minus'>-</button>
+      <button class='decrement minus'>
+        <img src="assets/images/icon-decrement-quantity.svg"/>
+      </button>
       <span class='amount'>${amount}</span>
-      <button class='increment plus'>+</button>
+      <button class='increment plus'>
+        <img src="assets/images/icon-increment-quantity.svg"/>
+      </button>
     </div>
     <button id='no-items' class='increment add-first'>
       <img src="./images/icon-add-to-cart.svg"/>

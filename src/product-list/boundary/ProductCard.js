@@ -41,10 +41,10 @@ div .buttom {
 }
 
 add-to-cart-button {
-  width: 50%;
+  width: 65%;
   align-self: center;
   position: relative;
-  top: -1.8em;
+  top: -2.2em;
 }
 </style>
 <div>
