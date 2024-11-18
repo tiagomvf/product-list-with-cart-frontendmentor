@@ -102,6 +102,11 @@ function template(items) {
             padding: 1em;
         }
 
+        :host > div > button:hover,
+        :host > div > button:focus {
+            filter: brightness(75%);
+        }
+
         hr {
             color: var(--clr-rose-100);
             border: solid 1px;
