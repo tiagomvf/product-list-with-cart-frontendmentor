@@ -85,15 +85,15 @@ const btTemplace = (amount) => html`
   </style>
     <div id='has-items'>
       <button class='decrement minus'>
-        <img src="assets/images/icon-decrement-quantity.svg"/>
+        <img src="/images/icon-decrement-quantity.svg"/>
       </button>
       <span class='amount'>${amount}</span>
       <button class='increment plus'>
-        <img src="assets/images/icon-increment-quantity.svg"/>
+        <img src="/images/icon-increment-quantity.svg"/>
       </button>
     </div>
     <button id='no-items' class='increment add-first'>
-      <img src="./images/icon-add-to-cart.svg"/>
+      <img src="/images/icon-add-to-cart.svg"/>
       Add to Cart
     </button>
 `

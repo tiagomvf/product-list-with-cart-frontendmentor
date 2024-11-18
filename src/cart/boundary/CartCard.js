@@ -7,7 +7,6 @@ import { confirm } from "../../shoppingPhaseSlice.js";
 function template(items) {
     return html`
     <style>
-        @import url('/normalize.css');
         :host {
             background-color: white;
             align-self: start;
