@@ -152,7 +152,7 @@ function template(items) {
                 }
             </span>
         </div>
-        <div  class="carbon-neutral-msg">
+        <div class="carbon-neutral-msg">
            <img src="/images/icon-carbon-neutral.svg">
            <span>
             This is a <strong>carbon-neutral</strong> delivery
