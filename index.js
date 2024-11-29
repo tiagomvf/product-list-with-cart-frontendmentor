@@ -16,17 +16,6 @@ document.addEventListener('DOMContentLoaded', async function() {
 });
 
 
-//"image": {
-//            "thumbnail": "./assets/images/image-waffle-thumbnail.jpg",
-//            "mobile": "./assets/images/image-waffle-mobile.jpg",
-//            "tablet": "./assets/images/image-waffle-tablet.jpg",
-//            "desktop": "./assets/images/image-waffle-desktop.jpg"
-//       },
-//       "name": "Waffle with Berries",
-//       "category": "Waffle",
-//       "price": 6.50
-//
-
 /**
  * @typedef {Object} Product
  * @property {ImagePaths} image

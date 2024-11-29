@@ -6,7 +6,7 @@ import "./AddToCartButtom";
  * @param {import("../../..").Product} product 
  * @returns 
  */
-function template(product) {return  html`
+function template( {product, amount}) {return  html`
 <style>
 :host {
   display: flex;
@@ -50,10 +50,10 @@ add-to-cart-button {
 <div>
   <img src=${product.image.desktop}>
 </div>
-<add-to-cart-button data-name=${product.name} data-amount=${product.amount}></add-to-cart-button> 
+<add-to-cart-button data-name=${product.name} data-amount=${amount}></add-to-cart-button> 
 <div class="category">${product.category}</div>
 <div class="name">${product.name}</div>
-<div class="price">$ ${product.price.toFixed(2)}</div>
+<div class="price">$ ${product.price}</div>
 `;
 }
 
@@ -62,13 +62,23 @@ class ProductCard extends HTMLElement {
     constructor(){
         super();
         this.attachShadow({mode: "open"});
-        store.subscribe(() => this.render())
+        store.subscribe(() => this.render());
     }
 
     render() {
+      const product = {
+        image: {
+          desktop: this.dataset.imageDesktop
+        },
+        name: this.dataset.name,
+        amount: 0, 
+        category: this.dataset.category,
+        price: Number(this.dataset.price).toFixed(2)
+      }
+
       render(template({
-        ...this.product,
-        amount: (store.getState().cart.purchaseList.find(x => x.name == this.product.name)?.amount || 0)
+        product,
+        amount: (store.getState().cart.purchaseList.find(x => x.name == product.name)?.amount || 0)
       }), this.shadowRoot);
     }    
 

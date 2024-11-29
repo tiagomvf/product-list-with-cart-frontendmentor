@@ -94,11 +94,13 @@ function template(items) {
         }
 
         :host > div > button {
-            border-radius: 9999px;
-            color: var(--clr-rose-050);
-            font-weight: 600;
-            border: none;
+            background-color: black;
             background-color: var(--clr-red);
+            border-radius: 9999px;
+            border: none;
+            color: var(--clr-rose-050);
+            font-size: var(--fs-300);
+            font-weight: 600;
             padding: 1em;
         }
 
@@ -167,8 +169,11 @@ function template(items) {
         </div>
         `}
     </div>
+    <div id='x'>
 <fm-confirmation-dialog></fm-confirmation-dialog>
+</div>
 `
+
 }
 
 class CartCard extends HTMLElement {

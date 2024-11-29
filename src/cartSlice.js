@@ -29,7 +29,7 @@ export const cartSlice = createSlice({
             }
         },
         clearCart(state) {
-            state.purchaseList = []
+            state.purchaseList = [];
         }
     }
 })

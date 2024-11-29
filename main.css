@@ -4,9 +4,6 @@
     src: url(/fonts/RedHatText-VariableFont_wght.ttf) format('woff2');
 }
 
-html {
-  font-size: 16px;
-}
 
 :root {
   --clr-red:      hsl(14, 86%, 42%);
@@ -26,6 +23,11 @@ html {
   --fs-700: 1.5rem;
   --fs-800: 2rem;
 
+}
+
+html {
+  font-size: 16px;
+  color: var(--clr-rose-900);
 }
 
 body {
